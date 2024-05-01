@@ -6,6 +6,7 @@ var result = document.getElementById('result');
 var operActual = '';
 var operAnterior = '';
 var operacion = undefined;
+var controlResult = false;
 
 botonNumeros.forEach(function(boton){
     boton.addEventListener('click', function(){
@@ -47,15 +48,19 @@ function calcular() {
     switch(operacion) {
         case '+':
             calculo = anterior + actual;
+            controlResult = true;
             break;
         case '-':
             calculo = anterior - actual;
+            controlResult = true;
             break;
         case 'X':
             calculo = anterior * actual;
+            controlResult = true;
             break;
         case '/':
             calculo = anterior / actual;
+            controlResult = true;
             break;
         default:
             return;
@@ -66,8 +71,16 @@ function calcular() {
 }
 
 function agregarNumero(num) {
-    operActual = operActual.toString() + num.toString();
+    if(controlResult){
+        operAnterior = operActual;
+        operActual = '';
+        operActual = operActual.toString() + num.toString();
+        actualizarDisplay();
+        controlResult = false;
+    }else{
+        operActual = operActual.toString() + num.toString();
     actualizarDisplay();
+    }
 }
 
 function actualizarDisplay() {
