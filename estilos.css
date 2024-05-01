@@ -34,11 +34,12 @@ body{
 }
 
 .output .display {
+    grid-column: 0.5 / -0.5;
     color: black;
     font-size: 1.85rem;
     text-align: right;
 }
 
 .calculadora-grilla  > button:hover {
-    background-color: rgba(255, 255, 255, .9);
+    background-color: rgba(0, 255, 255, .9);
 }
